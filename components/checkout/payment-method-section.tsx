@@ -8,15 +8,15 @@ export function PaymentMethodSection() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <div className="flex items-center p-4 border rounded-md bg-blue-50 border-blue-200">
+          <div className="flex flex-wrap items-center p-4 border rounded-md bg-blue-50 border-blue-200">
             <div className="w-10 h-10 mr-4 flex items-center justify-center">
               <PayPalIcon />
             </div>
-            <div className="flex-1">
+            <div className="flex-1 min-w-[150px]">
               <p className="font-medium">PayPal</p>
               <p className="text-sm text-gray-600">Pay securely using your PayPal account</p>
             </div>
-            <input type="radio" checked readOnly className="h-5 w-5 text-blue-600" />
+            <input type="radio" checked readOnly className="h-5 w-5 text-blue-600 mt-2 sm:mt-0" />
           </div>
         </div>
       </CardContent>

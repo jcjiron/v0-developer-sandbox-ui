@@ -17,6 +17,26 @@ export function SplitPanelLayout({ leftPanel, rightPanel }: SplitPanelLayoutProp
   const containerRef = useRef<HTMLDivElement>(null)
   const dividerRef = useRef<HTMLDivElement>(null)
 
+  // Detectar pantallas pequeñas y colapsar automáticamente el panel izquierdo
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768 && !isLeftPanelCollapsed) {
+        setIsLeftPanelCollapsed(true)
+      }
+    }
+
+    // Ejecutar al montar
+    handleResize()
+
+    // Añadir listener para cambios de tamaño
+    window.addEventListener("resize", handleResize)
+
+    // Limpiar al desmontar
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [isLeftPanelCollapsed])
+
   const handleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault()
     setIsResizing(true)
@@ -89,10 +109,10 @@ export function SplitPanelLayout({ leftPanel, rightPanel }: SplitPanelLayoutProp
 
       {/* Right Panel */}
       <div
-        className="flex-1 overflow-auto p-6"
+        className="flex-1 overflow-auto p-3 sm:p-4 md:p-6"
         style={{ width: isLeftPanelCollapsed ? "100%" : `${100 - leftPanelWidth}%` }}
       >
-        {rightPanel}
+        <div className="max-w-full">{rightPanel}</div>
       </div>
     </div>
   )

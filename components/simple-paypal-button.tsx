@@ -143,5 +143,5 @@ export function SimplePayPalButton({ amount, onSuccess, onError }: SimplePayPalB
     return <div className="w-full py-4 text-center bg-red-50 text-red-600 rounded border border-red-200">{error}</div>
   }
 
-  return <div ref={paypalRef} className="w-full min-h-[45px]" />
+  return <div ref={paypalRef} className="w-full min-h-[45px] overflow-hidden" />
 }

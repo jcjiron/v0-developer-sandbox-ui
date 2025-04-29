@@ -18,17 +18,17 @@ export function PriceDetailsCard({ onPaymentSuccess, onPaymentError }: PriceDeta
       </CardHeader>
       <CardContent>
         <div className="space-y-2">
-          <div className="flex justify-between">
-            <span>$189 x 5 nights</span>
-            <span>$945</span>
+          <div className="flex flex-wrap justify-between">
+            <span className="mr-2">$189 x 5 nights</span>
+            <span className="font-medium">$945</span>
           </div>
-          <div className="flex justify-between">
-            <span>Cleaning fee</span>
-            <span>$75</span>
+          <div className="flex flex-wrap justify-between">
+            <span className="mr-2">Cleaning fee</span>
+            <span className="font-medium">$75</span>
           </div>
-          <div className="flex justify-between">
-            <span>Service fee</span>
-            <span>$85</span>
+          <div className="flex flex-wrap justify-between">
+            <span className="mr-2">Service fee</span>
+            <span className="font-medium">$85</span>
           </div>
         </div>
       </CardContent>
@@ -45,7 +45,7 @@ export function PriceDetailsCard({ onPaymentSuccess, onPaymentError }: PriceDeta
         </div>
 
         {/* Botón de PayPal */}
-        <div className="w-full mb-4">
+        <div className="w-full mb-4 overflow-hidden">
           <SimplePayPalButton amount={totalAmount} onSuccess={onPaymentSuccess} onError={onPaymentError} />
         </div>
 
