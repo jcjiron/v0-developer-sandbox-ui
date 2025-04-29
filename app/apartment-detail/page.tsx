@@ -32,7 +32,12 @@ export default function ApartmentDetailPage() {
 
         <div className="bg-white rounded-xl overflow-hidden shadow-lg mb-6">
           <div className="h-80 bg-gray-300 relative">
-            <img src="/coastal-living.png" alt="Apartment" className="w-full h-full object-cover" />
+            {/* Reemplazando la imagen con un placeholder */}
+            <img
+              src="/coastal-penthouse.png"
+              alt="Luxury Ocean View Apartment"
+              className="w-full h-full object-cover"
+            />
             <Badge className="absolute top-4 right-4 bg-blue-600">Featured</Badge>
           </div>
 

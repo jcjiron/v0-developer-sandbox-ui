@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { useSandbox } from "./sdk-context"
 import { CopyIcon, CheckIcon } from "lucide-react"
 
-export function InitializeSection() {
+export function CheckoutSection() {
   const router = useRouter()
   const { initialized, keys, endpointUrl, initializeSdk } = useSandbox()
 
@@ -15,58 +15,16 @@ export function InitializeSection() {
     router.push("/validation")
   }
 
+  const handleInitialize = () => {
+    initializeSdk()
+    router.push("/sdk-inspector")
+  }
+
   return (
-    <Card className="border rounded-lg">
-      <CardContent className="p-6">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-green-600 text-white font-medium">
-                <span className="text-lg">⚙️</span>
-              </div>
-              <h2 className="text-xl font-semibold">SDK Initialization</h2>
-            </div>
-            <div className="flex gap-2">
-              {!initialized ? (
-                <Button onClick={initializeSdk} className="bg-green-600 hover:bg-green-700">
-                  Get Keys
-                </Button>
-              ) : (
-                <>
-                  <Button disabled className="bg-gray-300">
-                    Initialized
-                  </Button>
-                  <Button onClick={handlePromote} className="bg-purple-600 hover:bg-purple-700">
-                    Promote
-                  </Button>
-                </>
-              )}
-            </div>
-          </div>
-
-          {initialized && keys && (
-            <div className="mt-4 space-y-3">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <KeyDisplay label="API Key" value={keys.apiKey} />
-                <KeyDisplay label="Public Key" value={keys.publicKey} />
-                <KeyDisplay label="Secret Key" value={keys.secretKey} />
-              </div>
-              {endpointUrl && (
-                <div className="mt-3">
-                  <label className="text-sm font-medium text-gray-700">Endpoint URL</label>
-                  <CopyableDisplay value={endpointUrl} />
-                </div>
-              )}
-              <p className="text-sm text-gray-500 mt-2">
-                These keys have been generated for your testing session. In a real environment, you would use your
-                actual API credentials.
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Nueva sección de Checkout */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
+    <div className="space-y-6">
+      {/* Checkout Card */}
+      <Card className="border rounded-lg">
+        <CardContent className="p-8 bg-gray-50">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-blue-600 text-white font-medium">
@@ -82,9 +40,9 @@ export function InitializeSection() {
             Test the payment flow with a sample apartment booking. Click the button to view details and proceed to
             checkout.
           </p>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </div>
   )
 }
 
