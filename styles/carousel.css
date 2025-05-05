@@ -1,0 +1,9 @@
+/* Add this to your globals.css or create a new CSS file and import it */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
