@@ -72,15 +72,36 @@ export function CheckoutSection() {
               <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-purple-600 text-white font-medium">
                 <span className="text-lg">💸</span>
               </div>
-              <h2 className="text-xl font-semibold">Stripe Documentation</h2>
+              <h2 className="text-xl font-semibold">Stripe Sandbox Documentation</h2>
             </div>
             <Button onClick={() => router.push("/stripe")} className="bg-purple-600 hover:bg-purple-700">
-              View Docs
+              See Documentation
             </Button>
           </div>
           <p className="text-sm text-gray-600">
-            Learn how to integrate Stripe payment processing into your application. Comprehensive guide to Stripe API
-            and checkout flow.
+            Learn how to integrate Stripe payment processing with test cards and API keys. Comprehensive guide to Stripe
+            checkout flow.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* MercadoPago Documentation Card */}
+      <Card className="border rounded-lg">
+        <CardContent className="p-8 bg-gray-50">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-blue-500 text-white font-medium">
+                <span className="text-lg">💲</span>
+              </div>
+              <h2 className="text-xl font-semibold">MercadoPago Sandbox Documentation</h2>
+            </div>
+            <Button onClick={() => router.push("/mercadopago")} className="bg-blue-500 hover:bg-blue-600">
+              See Documentation
+            </Button>
+          </div>
+          <p className="text-sm text-gray-600">
+            Learn how to integrate MercadoPago payment processing for Latin American markets. Comprehensive guide to
+            regional payment methods and testing.
           </p>
         </CardContent>
       </Card>

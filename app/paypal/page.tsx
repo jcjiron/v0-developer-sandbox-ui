@@ -351,6 +351,105 @@ export default function PayPalDocumentationPage() {
               </ul>
             </CardContent>
           </Card>
+
+          {/* Comparativa de Sandbox */}
+          <Card>
+            <CardHeader>
+              <CardTitle>PayPal Sandbox vs Stripe Sandbox</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <p>
+                When choosing a payment gateway, understanding the differences between testing environments is crucial
+                for efficient development. Here's a comparison between PayPal and Stripe sandboxes:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-700 mb-3">PayPal Sandbox Advantages</h3>
+                  <ul className="space-y-2 list-disc pl-5">
+                    <li>
+                      <strong>Complete simulation</strong>: Faithfully replicates the real PayPal experience with
+                      sandbox accounts.
+                    </li>
+                    <li>
+                      <strong>Test accounts</strong>: Allows creating merchant and buyer accounts to simulate real
+                      transactions.
+                    </li>
+                    <li>
+                      <strong>Brand recognition</strong>: Test the exact experience your users will see, including the
+                      familiar PayPal interface.
+                    </li>
+                    <li>
+                      <strong>Global coverage</strong>: Available in over 200 countries, allowing testing of
+                      international scenarios.
+                    </li>
+                    <li>
+                      <strong>Diverse payment options</strong>: Test different methods such as PayPal balance, linked
+                      cards, etc.
+                    </li>
+                    <li>
+                      <strong>Buyer protection</strong>: Simulate buyer protection scenarios and disputes.
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg font-semibold text-purple-700 mb-3">Limitations Compared to Stripe</h3>
+                  <ul className="space-y-2 list-disc pl-5">
+                    <li>
+                      <strong>More complex setup</strong>: Requires creating and managing separate sandbox accounts.
+                    </li>
+                    <li>
+                      <strong>Learning curve</strong>: Slower development process due to initial complexity.
+                    </li>
+                    <li>
+                      <strong>Debugging tools</strong>: Fewer advanced tools for debugging compared to Stripe.
+                    </li>
+                    <li>
+                      <strong>Stability</strong>: Occasionally may present stability issues or downtime.
+                    </li>
+                    <li>
+                      <strong>Webhooks</strong>: More complex webhook configuration and fewer tools for local testing.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mt-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <p className="text-sm text-blue-700">
+                      <strong>Developer tip:</strong> PayPal is ideal when you need a globally recognized payment
+                      solution with an existing user base. If your audience values the familiarity and trust of the
+                      PayPal brand, this may be the best option despite the greater development complexity.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold mb-3">When to Choose PayPal?</h3>
+                <p>PayPal is ideal for:</p>
+                <ul className="list-disc pl-5 space-y-1 mt-2">
+                  <li>Businesses that need a quick payment solution with minimal development</li>
+                  <li>Markets where users prefer not to share card information directly</li>
+                  <li>International commerce, especially in countries where Stripe is not available</li>
+                  <li>Small businesses that benefit from PayPal's brand recognition and trust</li>
+                  <li>Cases where buyer and seller protection is an important consideration</li>
+                  <li>Platforms that need P2P (person-to-person) payments in addition to commercial payments</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
