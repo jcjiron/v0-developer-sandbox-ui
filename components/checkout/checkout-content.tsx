@@ -5,6 +5,7 @@ import { BookingSummary } from "./booking-summary"
 import { PaymentMethodSection } from "./payment-method-section"
 import { PriceDetailsCard } from "./price-details-card"
 import { PaymentModal } from "./payment-modal"
+import { PaymentProvider } from "./payment-context"
 
 export function CheckoutContent() {
   const [showModal, setShowModal] = useState(false)
@@ -28,26 +29,28 @@ export function CheckoutContent() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Checkout</h1>
+    <PaymentProvider>
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold mb-6">Checkout</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <BookingSummary />
-          <PaymentMethodSection />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <BookingSummary />
+            <PaymentMethodSection />
+          </div>
+
+          <div className="lg:col-span-1">
+            <PriceDetailsCard onPaymentSuccess={handlePaymentSuccess} onPaymentError={handlePaymentError} />
+          </div>
         </div>
 
-        <div className="lg:col-span-1">
-          <PriceDetailsCard onPaymentSuccess={handlePaymentSuccess} onPaymentError={handlePaymentError} />
-        </div>
+        <PaymentModal
+          show={showModal}
+          onClose={handleCloseModal}
+          paymentDetails={paymentDetails}
+          paymentError={paymentError}
+        />
       </div>
-
-      <PaymentModal
-        show={showModal}
-        onClose={handleCloseModal}
-        paymentDetails={paymentDetails}
-        paymentError={paymentError}
-      />
-    </div>
+    </PaymentProvider>
   )
 }

@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Loader2, AlertTriangle } from "lucide-react"
@@ -80,19 +79,6 @@ export function CollapsibleActionSection({
           </div>
         </AccordionTrigger>
         <AccordionContent className="px-6 pb-6">
-          <div className="flex justify-end mb-4">
-            <Button onClick={onAction} className="bg-blue-600 hover:bg-blue-700" disabled={isLoading || !isValidJson}>
-              {isLoading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Processing...
-                </>
-              ) : (
-                actionLabel
-              )}
-            </Button>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card
               className={`h-full transition-all duration-300 ${!isValidJson ? "border-yellow-400 bg-yellow-50" : isLoading ? "border-blue-400 bg-blue-50" : ""}`}

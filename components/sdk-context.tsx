@@ -2,10 +2,14 @@
 
 import { createContext, useContext, useState, type ReactNode } from "react"
 
+export type SdkMode = "LIVE" | "MOCK"
+
 type SdkKeys = {
   apiKey: string
   publicKey: string
   secretKey: string
+  clientId: string
+  secretId: string
 } | null
 
 type RequestResponse = {
@@ -28,11 +32,13 @@ interface SandboxContextType {
   keys: SdkKeys
   authToken: string | null
   endpointUrl: string | null
+  mode: SdkMode
   authRequestResponse: RequestResponse
   userRequestResponse: RequestResponse
   cardsRequestResponse: RequestResponse
   chargeRequestResponse: RequestResponse
-  initializeSdk: () => void
+  initializeSdk: (mode?: SdkMode) => void
+  setMode: (mode: SdkMode) => void
   setAuthToken: (token: string) => void
   setAuthenticated: (value: boolean) => void
   setAuthRequestResponse: (data: Partial<RequestResponse>) => void
@@ -49,6 +55,7 @@ export function SandboxProvider({ children }: { children: ReactNode }) {
   const [authToken, setAuthToken] = useState<string | null>(null)
   const [endpointUrl, setEndpointUrl] = useState<string | null>(null)
   const [keys, setKeys] = useState<SdkKeys>(null)
+  const [mode, setMode] = useState<SdkMode>("LIVE")
   const [authRequestResponse, setAuthRequestResponse] = useState<RequestResponse>(emptyRequestResponse)
   const [userRequestResponse, setUserRequestResponse] = useState<RequestResponse>(emptyRequestResponse)
   const [cardsRequestResponse, setCardsRequestResponse] = useState<RequestResponse>(emptyRequestResponse)
@@ -63,17 +70,40 @@ export function SandboxProvider({ children }: { children: ReactNode }) {
     return result
   }
 
-  const initializeSdk = () => {
+  const initializeSdk = (newMode?: SdkMode) => {
+    const currentMode = newMode || mode
+    const prefix = currentMode === "LIVE" ? "pb_" : "dev_"
+
     const newKeys = {
       apiKey: generateRandomString(),
       publicKey: generateRandomString(),
       secretKey: generateRandomString(),
+      clientId: `${prefix}${generateRandomString(16)}`,
+      secretId: `${prefix}${generateRandomString(16)}`,
     }
+
     const randomEndpoint = generateRandomString(8).toLowerCase()
-    const newEndpointUrl = `https://sandbox.payment.api/${randomEndpoint}`
+    const baseUrl = currentMode === "LIVE" ? "https://api.payment.com" : "https://sandbox.payment.api"
+    const newEndpointUrl = `${baseUrl}/${randomEndpoint}`
+
     setEndpointUrl(newEndpointUrl)
     setKeys(newKeys)
     setInitialized(true)
+
+    if (newMode && newMode !== mode) {
+      setMode(newMode)
+    }
+  }
+
+  const updateMode = (newMode: SdkMode) => {
+    if (newMode !== mode) {
+      setMode(newMode)
+
+      // Reinicializar el SDK con el nuevo modo si ya estaba inicializado
+      if (initialized) {
+        initializeSdk(newMode)
+      }
+    }
   }
 
   const updateAuthRequestResponse = (data: Partial<RequestResponse>) => {
@@ -100,11 +130,13 @@ export function SandboxProvider({ children }: { children: ReactNode }) {
         keys,
         authToken,
         endpointUrl,
+        mode,
         authRequestResponse,
         userRequestResponse,
         cardsRequestResponse,
         chargeRequestResponse,
         initializeSdk,
+        setMode: updateMode,
         setAuthToken,
         setAuthenticated,
         setAuthRequestResponse: updateAuthRequestResponse,

@@ -42,6 +42,48 @@ export function CheckoutSection() {
           </p>
         </CardContent>
       </Card>
+
+      {/* PayPal Documentation Card */}
+      <Card className="border rounded-lg">
+        <CardContent className="p-8 bg-gray-50">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-blue-600 text-white font-medium">
+                <span className="text-lg">💳</span>
+              </div>
+              <h2 className="text-xl font-semibold">PayPal Sandbox Documentation</h2>
+            </div>
+            <Button onClick={() => router.push("/paypal")} className="bg-blue-600 hover:bg-blue-700">
+              See Documentation
+            </Button>
+          </div>
+          <p className="text-sm text-gray-600">
+            Brief description of PayPal Sandbox integration. Learn how to set up and configure PayPal in your
+            application.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Stripe Documentation Card */}
+      <Card className="border rounded-lg">
+        <CardContent className="p-8 bg-gray-50">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center">
+              <div className="flex items-center justify-center w-8 h-8 mr-3 rounded-full bg-purple-600 text-white font-medium">
+                <span className="text-lg">💸</span>
+              </div>
+              <h2 className="text-xl font-semibold">Stripe Documentation</h2>
+            </div>
+            <Button onClick={() => router.push("/stripe")} className="bg-purple-600 hover:bg-purple-700">
+              View Docs
+            </Button>
+          </div>
+          <p className="text-sm text-gray-600">
+            Learn how to integrate Stripe payment processing into your application. Comprehensive guide to Stripe API
+            and checkout flow.
+          </p>
+        </CardContent>
+      </Card>
     </div>
   )
 }
